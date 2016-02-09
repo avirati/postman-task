@@ -47,22 +47,41 @@ exports.getRoomById = function (id) {
 }
 
 exports.addParticipant = function (user, room_id) {
-	store[room_id].players.push(user);
-}
-
-exports.removeParticipant = function (user, room_id) {
-	participants = store[room_id].players;
-	participants.splice(participants.indexOf(user));
+	store[room_id].players.push({
+		user: user,
+		allowed: function () {
+			//allow admin by default
+			return store[room_id].admin === user;
+		}()
+	});
 }
 
 exports.hasParticipant = function (user, room_id) {
 	participants = store[room_id].players;
-	return participants.indexOf(user) > -1;
+	var found = false;
+
+	participants.map(function (participant) {
+		if(participant.user === user)
+			found = true;
+	})
+
+	return found;
 }
 
 exports.logChat = function (user, room_id, msg) {
 	store[room_id].chat_logs.push({
 		from: user,
 		msg: msg
+	})
+}
+
+exports.allowUser = function (user, participant, room_id) {
+	if(user !== store[room_id].admin) {
+		return;
+	}
+	store[room_id].players.map(function (o) {
+		if(o.user === participant) {
+			o.allowed = true;
+		}
 	})
 }

@@ -1,14 +1,14 @@
 <ul class="side-nav fixed right" id="user-list">
     <x ng-repeat="o in currentRoom.players">
         <li class="bold">
-            <a href="" class="waves-effect waves-blue-grey">{{o}}</a>
+            <a class="waves-effect waves-blue-grey">{{o.user}} <span class="right green-text" style="cursor:pointer;" ng-if="!o.allowed && currentRoom.admin === login_data.user" ng-click="allowUser(o.user)">Allow</span></a>
         </li>
         <li class="li-hover">
             <div class="divider"></div>
         </li>
     </x>
 </ul>
-<div class="comm-area">
+<div class="comm-area" ng-class="{'xdisabled': isAccessDisabled()}">
     <div class="chat-logs" id="chat-log">
         <div class="log" ng-repeat="obj in currentRoom.chat_logs">
             <div class="from">{{obj.from}}</div>

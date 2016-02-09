@@ -69,4 +69,9 @@ game-header {
     border: 1px solid #aaa;
     resize: none; }
 
+.xdisabled {
+  opacity: 0.4;
+  pointer-events: none;
+  background-color: #eee; }
+
 /*# sourceMappingURL=style.css.map */

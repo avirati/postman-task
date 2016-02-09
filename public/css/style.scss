@@ -91,3 +91,9 @@ game-header {
     resize: none;
   }
 }
+
+.xdisabled {
+  opacity: 0.4;
+  pointer-events: none;
+  background-color: #eee;
+}

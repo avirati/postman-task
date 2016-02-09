@@ -51,6 +51,21 @@ module.exports = function (server) {
 			}
 
 		})
+
+		spark.on('allow_user', function (data) {
+
+			RoomStore.allowUser(data.user, data.participant, data.room_id);
+
+			var sparks = primus_dashboard.in(data.room_id).clients();
+
+			sparks
+					.forEach(function (spark_id) {
+						primus_dashboard
+								.spark(spark_id)
+								.emit('update_room')
+					})
+
+		})
 	})
 
 	var fs = require('fs');

@@ -57,6 +57,28 @@ angular.module('gameTime')
 							$scope.scrollChatToBottom(id)
 						}, 200);
 				},
+				allowUser: function (user) {
+					PrimusFactory.methods.allowUser($scope.login_data.user, user, $stateParams.roomId);
+				},
+				isAccessDisabled: function () {
+					if(!$scope.currentRoom) {
+						return true;
+					}
+					var isDisabled = true;
+
+					$scope.currentRoom.players.map(function (o) {
+						if(o.user === $scope.login_data.user) {
+							if(!o.allowed) {
+								isDisabled = true;
+							}
+							else {
+								isDisabled = false;
+							}
+						}
+					})
+
+					return isDisabled;
+				},
 				init: function () {
 					$scope.joinRoom();
 					$scope.getRoom($stateParams.roomId);

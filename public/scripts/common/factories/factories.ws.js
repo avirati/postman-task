@@ -50,6 +50,13 @@ angular.module('gameTime.factories')
 						msg: msg,
 						room_id: room_id
 					})
+				},
+				allowUser: function (user, participant, room_id) {
+					_primus.emit('allow_user', {
+						user: user,
+						participant: participant,
+						room_id: room_id
+					})
 				}
 			}
 		}
