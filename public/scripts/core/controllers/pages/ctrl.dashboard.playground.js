@@ -34,6 +34,9 @@ angular.module('gameTime')
 					httpFactory.getRoom(id)
 							.success(function ( res ) {
 								$scope.currentRoom = res.data[0];
+								if(Object.keys($scope.currentRoom).length === 0) {
+									$state.go('dashboard.rooms');
+								}
 							})
 							.error(function ( res ) {
 								Materialize.toast(res.info, 4000);

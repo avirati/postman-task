@@ -25,7 +25,10 @@ module.exports = function (server) {
 					.forEach(function (spark_id) {
 						primus_dashboard
 								.spark(spark_id)
-								.emit('update_room')
+								.emit('update_room');
+						primus_dashboard
+								.spark(spark_id)
+								.emit('update_rooms')
 					})
 
 		})
