@@ -12,8 +12,9 @@
 angular.module('gameTime')
 	.controller('ctrl.dashboard', [
 		'$scope',
+		'$state',
 		'httpFactory',
-		function ( $scope, httpFactory ) {
+		function ( $scope, $state, httpFactory ) {
 
 			//$scope variables
 			angular.extend($scope, {
@@ -29,6 +30,7 @@ angular.module('gameTime')
 							.success(function ( res ) {
 								localStorage.setItem('login_data', JSON.stringify(res.data[0]));
 								$scope.refreshUserData();
+								$state.go('dashboard.rooms');
 								Materialize.toast(res.info, 4000);
 							})
 							.error(function ( res ) {

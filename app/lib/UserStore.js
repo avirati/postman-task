@@ -28,7 +28,12 @@ exports.deregisterUser = function (user, token) {
 }
 
 exports.getUserByToken = function (token) {
-	return _.invert(store)[token];
+	console.log(store)
+	for(var user in store) {
+		console.log(user, store[user], token)
+		if(store[user] === token)
+			return user;
+	}
 }
 
 exports.getTokenByUser = function (user) {

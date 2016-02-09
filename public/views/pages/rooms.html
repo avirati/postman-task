@@ -1,0 +1,36 @@
+<div class="row" ng-if="rooms.length > 0">
+    <div class="col s12">
+        <table class="striped">
+            <thead>
+                <th>Room ID</th>
+                <th>Admin</th>
+                <th>Players</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="obj in rooms">
+                    <td>{{obj.id}}</td>
+                    <td>{{obj.admin}}</td>
+                    <td>{{obj.players.length}}</td>
+                    <td ng-if="obj.admin !== login_data.user"><a class="btn btn-large waves-effect light-blue">Ask to Join</a></td>
+                    <td ng-if="obj.admin === login_data.user">
+                        <a class="btn btn-large waves-effect light-blue" ng-click="deleteRoom(obj.id)">Delete</a>
+                        <a class="btn btn-large waves-effect light-blue">Enter</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row" ng-if="rooms.length === 0">
+    <div class="col s12">
+        <div class="card-panel center">
+            <span class="blue-text text-darken-2">No Rooms ! Please go ahead and create one :)</span>
+        </div>
+    </div>
+</div>
+<div class="fixed-action-btn" style="bottom: 60px; right: 50px;">
+    <a class="btn-floating btn-large green waves-effect" ng-click="createRoom()">
+        <i class="large material-icons">add</i>
+    </a>
+</div>

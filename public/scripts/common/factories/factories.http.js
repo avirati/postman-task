@@ -41,5 +41,26 @@ angular.module('gameTime.factories')
 			})
 		}
 
+		httpFactory.createRoom = function () {
+			return $http({
+				method: 'POST',
+				url: '/create-room'
+			})
+		}
+
+		httpFactory.getAllRooms = function () {
+			return $http({
+				method: 'GET',
+				url: '/rooms'
+			})
+		}
+
+		httpFactory.deleteRoom = function (id) {
+			return $http({
+				method: 'DELETE',
+				url: '/delete-room/' + id
+			})
+		}
+
 		return httpFactory;
 	}])

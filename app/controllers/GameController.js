@@ -2,7 +2,9 @@
 
 var filterResponse = require('../lib/ResponseFilter'),
 		UserStore = require('../lib/UserStore'),
+		RoomStore = require('../lib/RoomStore'),
 		user,
+		room_id,
 		response,
 		error,
 		token,
@@ -74,4 +76,54 @@ exports.deregister = function (req, res) {
 			res.status(400).json(response);
 		}
 	}
+}
+
+/**
+ * @author Avinash Verma
+ *
+ * Returns all Rooms
+ * @example N/A
+ *
+ * @param {Request} req: The Request Object
+ * @param {Response} res: The Response Object
+ */
+exports.allRooms = function (req, res) {
+	response = filterResponse.success(RoomStore.allRooms(), "");
+	res.status(200).json(response);
+}
+
+/**
+ * @author Avinash Verma
+ *
+ * Creates a Room
+ * @example N/A
+ *
+ * @param {Request} req: The Request Object
+ * @param {Response} res: The Response Object
+ */
+exports.createRoom = function (req, res) {
+	token = req.headers['x-game-token'];
+	user = UserStore.getUserByToken(token);
+	RoomStore.createRoom(user);
+	response = filterResponse.success([], "Room Created Successfully");
+	res.status(200).json(response);
+}
+
+/**
+ * @author Avinash Verma
+ *
+ * Deletes a Room
+ * @example N/A
+ *
+ * @param {Request} req: The Request Object
+ * @param {Response} res: The Response Object
+ */
+exports.deleteRoom = function (req, res) {
+	token = req.headers['x-game-token'];
+	user = UserStore.getUserByToken(token);
+
+	room_id = req.params.id;
+	RoomStore.deleteRoom(user, room_id);
+	response = filterResponse.success([], "Room Deleted Successfully");
+	res.status(200).json(response);
 }

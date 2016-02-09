@@ -8,7 +8,7 @@ var config = {
     app: {
       name: 'postman-task'
     },
-    port: 3000,
+    port: 3001,
     db: 'mongodb://localhost/postman-task-development'
   },
 
@@ -17,7 +17,7 @@ var config = {
     app: {
       name: 'postman-task'
     },
-    port: 3000,
+    port: 3001,
     db: 'mongodb://localhost/postman-task-test'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'postman-task'
     },
-    port: 3000,
+    port: 3001,
     db: 'mongodb://localhost/postman-task-production'
   }
 };
