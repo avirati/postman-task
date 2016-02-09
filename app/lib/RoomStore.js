@@ -17,6 +17,9 @@ var store = {},
 
 
 exports.createRoom = function (user) {
+	if(!user)
+		return;
+
 	token = tokenGenerator.generate(16);
 	store[token] = {
 		id: token,

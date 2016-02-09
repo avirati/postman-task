@@ -13,5 +13,26 @@ angular.module('gameTime', [
 	'gameTime.filters',
 	'gameTime.factories',
 	'gameTime.routes',
-	'gameTime.angular-materialize'
+	'gameTime.angular-materialize',
+	'primus',
 ]);
+
+angular.module('gameTime')
+		.config(['primusProvider', function (primusProvider) {
+			var serverBaseUrl = location.port.length > 0 ? document.domain + ':' + location.port : document.domain;
+			primusProvider
+			// Define Primus endpoint.
+			.setEndpoint(serverBaseUrl)
+			// Define Primus options.
+			.setOptions({
+				reconnect: {
+					'minDelay': 100,
+					'maxDelay': 60000,
+					'retries': 1000,
+					'reconnect timeout': 2000,
+					'factor': 1
+				}
+			})
+			// Define default multiplex option for resources.
+			.setDefaultMultiplex(false);
+		}])

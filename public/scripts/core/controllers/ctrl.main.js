@@ -10,7 +10,7 @@
  * @param {Scope} $scope: scope of the container
  */
 angular.module('gameTime')
-	.controller('ctrl.main', [ '$scope', 'httpFactory', function ($scope, httpFactory) {
+	.controller('ctrl.main', [ '$scope', 'httpFactory', 'primus', 'PrimusFactory', function ($scope, httpFactory, primus, PrimusFactory) {
 		window.scope = $scope;
 		//$scope variables
 		angular.extend($scope, {
@@ -38,6 +38,7 @@ angular.module('gameTime')
 			},
 			init: function () {
 				$scope.refreshUserData();
+				PrimusFactory.init($scope, primus);
 			}
 		})
 
