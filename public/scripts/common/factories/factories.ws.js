@@ -32,11 +32,22 @@ angular.module('gameTime.factories')
 				_primus.$on('update_room', function () {
 					$scope.$broadcast('update_room');
 				})
+
+				_primus.$on('room_communication', function (data) {
+					$scope.$broadcast('room_communication', data);
+				})
 			},
 			methods: {
 				joinRoom: function (user, room_id) {
 					_primus.emit('join_room', {
 						user: user,
+						room_id: room_id
+					})
+				},
+				sendChat: function (user, msg, room_id) {
+					_primus.emit('room_communication', {
+						user: user,
+						msg: msg,
 						room_id: room_id
 					})
 				}

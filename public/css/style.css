@@ -49,7 +49,17 @@ game-header {
     top: 0px;
     left: 0px;
     bottom: 100px;
-    right: 0px; }
+    right: 0px;
+    overflow: auto; }
+    .comm-area .chat-logs .log {
+      position: relative;
+      width: 100%;
+      min-height: 60px; }
+      .comm-area .chat-logs .log .from {
+        font-weight: bold;
+        display: block; }
+      .comm-area .chat-logs .log .msg {
+        color: #aaa; }
   .comm-area textarea {
     position: absolute;
     left: 0px;

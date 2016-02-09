@@ -25,7 +25,8 @@ exports.createRoom = function (user) {
 	store[token] = {
 		id: token,
 		admin: user,
-		players: []
+		players: [],
+		chat_logs: []
 	};
 	return store[token];
 }
@@ -55,7 +56,13 @@ exports.removeParticipant = function (user, room_id) {
 }
 
 exports.hasParticipant = function (user, room_id) {
-	console.log(store, room_id)
 	participants = store[room_id].players;
 	return participants.indexOf(user) > -1;
+}
+
+exports.logChat = function (user, room_id, msg) {
+	store[room_id].chat_logs.push({
+		from: user,
+		msg: msg
+	})
 }

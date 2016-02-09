@@ -12,13 +12,14 @@
 angular.module('gameTime')
 	.controller('ctrl.dashboard.playground', [
 		'$scope',
+		'$timeout',
 		'$state',
 		'$stateParams',
 		'httpFactory',
 		'PrimusFactory',
 
-		function ( $scope, $state, $stateParams, httpFactory, PrimusFactory ) {
-
+		function ( $scope, $timeout, $state, $stateParams, httpFactory, PrimusFactory ) {
+			window.scope = $scope;
 			//$scope variables
 			angular.extend($scope, {
 
@@ -38,11 +39,32 @@ angular.module('gameTime')
 								Materialize.toast(res.info, 4000);
 							})
 				},
+				sendChat: function () {
+					PrimusFactory.methods.sendChat($scope.login_data.user, $scope.chatMsg, $stateParams.roomId);
+					$scope.chatMsg = '';
+				},
+				scrollChatToBottom: function (id) {
+					var msgBox = document.getElementById('chat-log');
+					if (msgBox)
+						$timeout(function () {
+							msgBox.scrollTop = msgBox.scrollHeight
+						}, 200)
+					else
+						$timeout(function () {
+							$scope.scrollChatToBottom(id)
+						}, 200);
+				},
 				init: function () {
 					$scope.joinRoom();
+					$scope.getRoom($stateParams.roomId);
 
 					$scope.$on('update_room', function () {
 						$scope.getRoom($stateParams.roomId);
+					})
+
+					$scope.$on('room_communication', function (event, data) {
+						$scope.currentRoom.chat_logs.push(data);
+						$scope.scrollChatToBottom()
 					})
 				}
 			})

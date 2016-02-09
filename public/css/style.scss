@@ -64,6 +64,22 @@ game-header {
     left: 0px;
     bottom: 100px;
     right: 0px;
+    overflow: auto;
+
+    .log {
+      position: relative;
+      width: 100%;
+      min-height: 60px;
+      
+      .from {
+        font-weight: bold;
+        display: block;
+      }
+      
+      .msg {
+        color: #aaa;
+      }
+    }
   }
   textarea {
     position: absolute;
