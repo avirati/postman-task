@@ -16,6 +16,15 @@ module.exports = function (server) {
 			if(!RoomStore.hasParticipant(data.user, data.room_id)) {
 				spark.join(data.room_id);
 				RoomStore.addParticipant(data.user, data.room_id);
+
+				var sparks = primus_dashboard.in(data.room_id).clients();
+
+				sparks
+					.forEach(function (spark_id) {
+							primus_dashboard
+								.spark(spark_id)
+								.emit('update_room')
+						})
 			}
 
 		})

@@ -5,6 +5,7 @@ module.exports = function (app, router) {
 
 	router.get('/', HomeController.renderHome);
 	router.get('/rooms', GameController.allRooms);
+	router.get('/rooms/:id', GameController.getRoom);
 
 	router.post('/register', GameController.register);
 	router.post('/deregister', GameController.deregister);

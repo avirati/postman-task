@@ -93,6 +93,20 @@ exports.allRooms = function (req, res) {
 /**
  * @author Avinash Verma
  *
+ * Get rooms by id
+ * @example N/A
+ *
+ * @param {Request} req: The Request Object
+ * @param {Response} res: The Response Object
+ */
+exports.getRoom = function (req, res) {
+	response = filterResponse.success(RoomStore.getRoomById(req.params.id), "");
+	res.status(200).json(response);
+}
+
+/**
+ * @author Avinash Verma
+ *
  * Creates a Room
  * @example N/A
  *

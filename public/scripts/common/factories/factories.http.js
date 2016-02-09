@@ -62,5 +62,12 @@ angular.module('gameTime.factories')
 			})
 		}
 
+		httpFactory.getRoom = function (id) {
+			return $http({
+				method: 'GET',
+				url: '/rooms/' + id
+			})
+		}
+
 		return httpFactory;
 	}])

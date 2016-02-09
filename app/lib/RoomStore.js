@@ -41,6 +41,10 @@ exports.allRooms = function () {
 	return _.values(store);
 }
 
+exports.getRoomById = function (id) {
+	return store[id];
+}
+
 exports.addParticipant = function (user, room_id) {
 	store[room_id].players.push(user);
 }

@@ -28,6 +28,10 @@ angular.module('gameTime.factories')
 				_primus.$on('update_rooms', function () {
 					$scope.$broadcast('update_rooms');
 				})
+
+				_primus.$on('update_room', function () {
+					$scope.$broadcast('update_room');
+				})
 			},
 			methods: {
 				joinRoom: function (user, room_id) {

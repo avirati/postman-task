@@ -29,8 +29,21 @@ angular.module('gameTime')
 				joinRoom: function () {
 					PrimusFactory.methods.joinRoom($scope.login_data.user, $stateParams.roomId);
 				},
+				getRoom: function (id) {
+					httpFactory.getRoom(id)
+							.success(function ( res ) {
+								$scope.currentRoom = res.data[0];
+							})
+							.error(function ( res ) {
+								Materialize.toast(res.info, 4000);
+							})
+				},
 				init: function () {
 					$scope.joinRoom();
+
+					$scope.$on('update_room', function () {
+						$scope.getRoom($stateParams.roomId);
+					})
 				}
 			})
 
