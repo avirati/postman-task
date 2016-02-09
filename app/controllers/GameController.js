@@ -1,8 +1,6 @@
 'use strict'
 
 var filterResponse = require('../lib/ResponseFilter'),
-		UserStore = require('../lib/UserStore'),
-		RoomStore = require('../lib/RoomStore'),
 		user,
 		room_id,
 		response,

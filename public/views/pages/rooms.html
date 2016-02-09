@@ -13,11 +13,11 @@
                     <td>{{obj.admin}}</td>
                     <td>{{obj.players.length}}</td>
                     <td ng-if="obj.admin !== login_data.user">
-                        <a class="btn btn-large waves-effect light-blue" ng-click="joinRoom(obj.id)">Enter</a>
+                        <a class="btn btn-large waves-effect light-blue" ng-click="openRoom(obj.id)">Enter</a>
                     </td>
                     <td ng-if="obj.admin === login_data.user">
                         <a class="btn btn-large waves-effect light-blue" ng-click="deleteRoom(obj.id)">Delete</a>
-                        <a class="btn btn-large waves-effect light-blue" ng-click="joinRoom(obj.id)">Enter</a>
+                        <a class="btn btn-large waves-effect light-blue" ng-click="openRoom(obj.id)">Enter</a>
                     </td>
                 </tr>
             </tbody>

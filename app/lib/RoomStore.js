@@ -13,7 +13,8 @@
 var store = {},
 	tokenGenerator = require('rand-token'),
 	token,
-	room;
+	room,
+	participants;
 
 
 exports.createRoom = function (user) {
@@ -38,4 +39,19 @@ exports.deleteRoom = function (user, room_id) {
 
 exports.allRooms = function () {
 	return _.values(store);
+}
+
+exports.addParticipant = function (user, room_id) {
+	store[room_id].players.push(user);
+}
+
+exports.removeParticipant = function (user, room_id) {
+	participants = store[room_id].players;
+	participants.splice(participants.indexOf(user));
+}
+
+exports.hasParticipant = function (user, room_id) {
+	console.log(store, room_id)
+	participants = store[room_id].players;
+	return participants.indexOf(user) > -1;
 }

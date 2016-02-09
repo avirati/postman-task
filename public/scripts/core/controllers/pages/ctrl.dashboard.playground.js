@@ -13,8 +13,11 @@ angular.module('gameTime')
 	.controller('ctrl.dashboard.playground', [
 		'$scope',
 		'$state',
+		'$stateParams',
 		'httpFactory',
-		function ( $scope, $state, httpFactory ) {
+		'PrimusFactory',
+
+		function ( $scope, $state, $stateParams, httpFactory, PrimusFactory ) {
 
 			//$scope variables
 			angular.extend($scope, {
@@ -23,8 +26,11 @@ angular.module('gameTime')
 
 			//$scope methods
 			angular.extend($scope, {
+				joinRoom: function () {
+					PrimusFactory.methods.joinRoom($scope.login_data.user, $stateParams.roomId);
+				},
 				init: function () {
-
+					$scope.joinRoom();
 				}
 			})
 

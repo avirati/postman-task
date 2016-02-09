@@ -52,7 +52,7 @@ angular.module('gameTime')
 								Materialize.toast(res.info, 4000);
 							})
 				},
-				joinRoom: function (room_id) {
+				openRoom: function (room_id) {
 					$state.go('dashboard.playground', {roomId: room_id});
 				},
 				init: function () {

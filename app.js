@@ -4,6 +4,8 @@ var express = require('express'),
 	http = require('http');
 
 _ = require('underscore');
+UserStore = require('./app/lib/UserStore');
+RoomStore = require('./app/lib/RoomStore');
 
 var app = express();
 var server = http.createServer(app);

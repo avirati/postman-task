@@ -9,25 +9,33 @@
  */
 angular.module('gameTime.factories')
 	.factory('PrimusFactory', [ function () {
-
+		var _primus;
 		return {
 			init: function ($scope, primus) {
-
-				primus.id(function (id) {
-					primus.sparkId = id;
+				_primus = primus;
+				_primus.id(function (id) {
+					_primus.sparkId = id;
 				})
 
-				primus.$on('close', function () {
+				_primus.$on('close', function () {
 
 				});
 
-				primus.$on('open', function () {
+				_primus.$on('open', function () {
 
 				});
 
-				primus.$on('update_rooms', function () {
+				_primus.$on('update_rooms', function () {
 					$scope.$broadcast('update_rooms');
 				})
+			},
+			methods: {
+				joinRoom: function (user, room_id) {
+					_primus.emit('join_room', {
+						user: user,
+						room_id: room_id
+					})
+				}
 			}
 		}
 	}]);
