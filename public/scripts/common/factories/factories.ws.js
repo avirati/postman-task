@@ -15,6 +15,10 @@ angular.module('gameTime.factories')
 				primus.$on('open', function () {
 
 				});
+
+				primus.$on('update_rooms', function () {
+					$scope.$broadcast('update_rooms');
+				})
 			}
 		}
 	}]);

@@ -34,6 +34,8 @@ angular.module('gameTime')
 						})
 						.error(function ( res ) {
 							Materialize.toast(res.info, 4000);
+							localStorage.clear();
+							$scope.$apply();
 						})
 			},
 			init: function () {

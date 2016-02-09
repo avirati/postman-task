@@ -107,6 +107,10 @@ exports.createRoom = function (req, res) {
 	RoomStore.createRoom(user);
 	response = filterResponse.success([], "Room Created Successfully");
 	res.status(200).json(response);
+
+	primus_dashboard.forEach(function (spark) {
+		spark.emit('update_rooms');
+	});
 }
 
 /**
@@ -126,4 +130,8 @@ exports.deleteRoom = function (req, res) {
 	RoomStore.deleteRoom(user, room_id);
 	response = filterResponse.success([], "Room Deleted Successfully");
 	res.status(200).json(response);
+
+	primus_dashboard.forEach(function (spark) {
+		spark.emit('update_rooms');
+	});
 }

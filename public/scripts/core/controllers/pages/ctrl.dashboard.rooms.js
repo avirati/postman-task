@@ -54,6 +54,10 @@ angular.module('gameTime')
 				},
 				init: function () {
 					$scope.getAllRooms();
+
+					$scope.$on('update_rooms', function () {
+						$scope.getAllRooms();
+					})
 				}
 			})
 
