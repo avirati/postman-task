@@ -2,11 +2,12 @@ var express = require('express'),
 	config = require('./config/config'),
 	router = express.Router();
 
+_ = require('underscore');
+
 var app = express();
 
-app.use('/', router);
-
 require('./config/express')(app, config);
+app.use('/', router);
 require('./app/routes')(app, router);
 
 app.listen(config.port, function () {

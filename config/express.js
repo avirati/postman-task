@@ -18,11 +18,11 @@ module.exports = function(app, config) {
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
-    extended: true
+    extended: false
   }));
   app.use(cookieParser());
   app.use(compress());
   app.use(express.static(config.root + '/public'));
-  app.use(methodOverride());
+  //app.use(methodOverride());
 
 };

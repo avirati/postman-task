@@ -1,9 +1,12 @@
 'use strict'
 
 var filterResponse = require('../lib/ResponseFilter'),
+		UserStore = require('../lib/UserStore'),
 		name,
 		response,
-		error;
+		error,
+		token,
+		data;
 
 /**
  * @author Avinash Verma
@@ -15,15 +18,26 @@ var filterResponse = require('../lib/ResponseFilter'),
  * @param {Response} res: The Response Object
  */
 exports.enterGame = function (req, res) {
-	var name = req.body.name;
+	name = req.body.name;
 
 	if(!name) {
 		error = new Error("Name can not be Empty !");
-		response = filterResponse.error(error, "Name can not be Empty !");
+		response = filterResponse.failure(error, "Name can not be Empty !");
 		res.status(400).json(response);
 	}
 	else {
-		response = filterResponse.success([], "User Registration Success");
-		res.status(201).json(response);
+		if(UserStore.hasUser(name)) {
+			error = new Error("User name already taken !");
+			response = filterResponse.failure(error, "User name already taken..");
+			res.status(403).json(response);
+		}
+		else {
+			token = UserStore.registerUser(name);
+			data = [{
+				token: token
+			}]
+			response = filterResponse.success(data, "Welcome " + name);
+			res.status(201).json(response);
+		}
 	}
 }

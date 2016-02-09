@@ -7,7 +7,7 @@
  * @example
  * angular.module('myApp', [])
  *      .controller('ctrl.main', ['$scope', 'httpFactory', function($scope, httpFactory) {
- *          httpFactory.getDestinations()
+ *          httpFactory.method()
  *              .success( function(_data_) {
  *                  console.log(_data_);
  *              })
@@ -24,6 +24,14 @@
 angular.module('gameTime.factories')
 	.factory('httpFactory', ['$http', function ($http) {
 		var httpFactory = {};
+
+		httpFactory.enterGame = function (json) {
+			return $http({
+				method: 'POST',
+				url: '/enter-game',
+				data: json
+			})
+		}
 
 		return httpFactory;
 	}])
