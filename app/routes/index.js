@@ -5,6 +5,7 @@ module.exports = function (app, router) {
 
 	router.get('/', HomeController.renderHome);
 
-	router.post('/enter-game', GameController.enterGame);
+	router.post('/register', GameController.register);
+	router.post('/deregister', GameController.deregister);
 
 }

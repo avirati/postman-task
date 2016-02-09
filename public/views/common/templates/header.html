@@ -12,6 +12,11 @@
 						</h1>
 					</li>
 				</ul>
+				<ul class="right" ng-if="isAuthenticated()">
+					<li>
+						<a ng-click="deregister()">Logout</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>

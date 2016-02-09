@@ -17,21 +17,23 @@ angular.module('gameTime')
 
 			//$scope variables
 			angular.extend($scope, {
-
+				user: {}
 			})
 
 			//$scope methods
 			angular.extend($scope, {
-				enterGame: function () {
-					httpFactory.enterGame({
-						name: $scope.user_name
-					})
-					.success(function ( res ) {
-						Materialize.toast(res.info, 4000);
-					})
-					.error(function ( res ) {
-						Materialize.toast(res.info, 4000);
-					})
+				register: function () {
+					httpFactory.register({
+								user: $scope.user.name
+							})
+							.success(function ( res ) {
+								localStorage.setItem('login_data', JSON.stringify(res.data[0]));
+								$scope.refreshUserData();
+								Materialize.toast(res.info, 4000);
+							})
+							.error(function ( res ) {
+								Materialize.toast(res.info, 4000);
+							})
 				},
 				init: function () {
 

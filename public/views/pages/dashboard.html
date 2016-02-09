@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="row">
+    <div class="row" ng-if="!isAuthenticated()">
         <div class="col m9 s12 input-field">
-            <input type="text" id="user_name" ng-model="user_name">
+            <input type="text" id="user_name" ng-model="user.name">
             <label for="user_name">Your Name</label>
         </div>
         <div class="col m3 s12 input-field">
-            <button class="btn btn-large waves-effect light-blue" ng-class="{'disabled': !user_name}" ng-click="enterGame()">Enter</button>
+            <button class="btn btn-large waves-effect light-blue" ng-class="{'disabled': !user.name}" ng-click="register()">Enter</button>
         </div>
     </div>
 </div>

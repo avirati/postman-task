@@ -15,10 +15,16 @@ var store = {},
 	token;
 
 
-exports.registerUser = function (name) {
+exports.registerUser = function (user) {
 	token = tokenGenerator.generate(16);
-	store[name] = token;
+	store[user] = token;
 	return token;
+}
+
+exports.deregisterUser = function (user, token) {
+	if(store[user] === token) {
+		delete store[user];
+	}
 }
 
 exports.getUserByToken = function (token) {

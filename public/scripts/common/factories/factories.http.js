@@ -25,10 +25,18 @@ angular.module('gameTime.factories')
 	.factory('httpFactory', ['$http', function ($http) {
 		var httpFactory = {};
 
-		httpFactory.enterGame = function (json) {
+		httpFactory.register = function (json) {
 			return $http({
 				method: 'POST',
-				url: '/enter-game',
+				url: '/register',
+				data: json
+			})
+		}
+
+		httpFactory.deregister = function (json) {
+			return $http({
+				method: 'POST',
+				url: '/deregister',
 				data: json
 			})
 		}
