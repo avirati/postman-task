@@ -65,8 +65,14 @@ exports.deregister = function (req, res) {
 	else {
 		if(UserStore.hasUser(user)) {
 			UserStore.deregisterUser(user, token);
+			RoomStore.deregisterRooms(user);
 			response = filterResponse.success([], "Logged out successfully");
 			res.status(200).json(response);
+
+			primus_dashboard.forEach(function (spark) {
+				spark.emit('update_room');
+				spark.emit('update_rooms');
+			});
 		}
 		else {
 			error = new Error("User not found");

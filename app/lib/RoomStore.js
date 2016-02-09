@@ -31,10 +31,16 @@ exports.createRoom = function (user) {
 	return store[token];
 }
 
-exports.deleteRoom = function (user, room_id) {
-	room = store[room_id];
-	if(store[room_id].admin === user) {
-		delete store[room_id];
+exports.deregisterRooms = function (user) {
+	for(var room_id in store) {
+		if(store[room_id].admin === user) {
+			delete store[room_id];
+		}
+		else {
+			store[room_id].players = store[room_id].players.filter(function (o) {
+				return o.user !== user;
+			})
+		}
 	}
 }
 
