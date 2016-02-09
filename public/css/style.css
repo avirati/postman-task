@@ -10,6 +10,7 @@ header .brand-logo {
   line-height: 60px; }
 
 footer.page-footer {
+  z-index: 1000;
   padding-top: 0px;
   position: absolute;
   bottom: 0px;
@@ -28,5 +29,34 @@ footer.page-footer {
 
 #login-page {
   padding: 100px 200px; }
+
+#user-list {
+  left: inherit;
+  right: 0;
+  top: 64px; }
+
+game-header {
+  z-index: 1000; }
+
+.comm-area {
+  position: absolute;
+  top: 64px;
+  left: 0px;
+  right: 240px;
+  bottom: 50px; }
+  .comm-area .chat-logs {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 100px;
+    right: 0px; }
+  .comm-area textarea {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    height: 100px;
+    border: 1px solid #aaa;
+    resize: none; }
 
 /*# sourceMappingURL=style.css.map */
