@@ -12,10 +12,12 @@
                     <td>{{obj.id}}</td>
                     <td>{{obj.admin}}</td>
                     <td>{{obj.players.length}}</td>
-                    <td ng-if="obj.admin !== login_data.user"><a class="btn btn-large waves-effect light-blue">Ask to Join</a></td>
+                    <td ng-if="obj.admin !== login_data.user">
+                        <a class="btn btn-large waves-effect light-blue" ng-click="joinRoom(obj.id)">Enter</a>
+                    </td>
                     <td ng-if="obj.admin === login_data.user">
                         <a class="btn btn-large waves-effect light-blue" ng-click="deleteRoom(obj.id)">Delete</a>
-                        <a class="btn btn-large waves-effect light-blue">Enter</a>
+                        <a class="btn btn-large waves-effect light-blue" ng-click="joinRoom(obj.id)">Enter</a>
                     </td>
                 </tr>
             </tbody>

@@ -24,4 +24,9 @@ angular.module('gameTime.routes')
 				templateUrl: 'views/pages/rooms.html',
 				controller: 'ctrl.dashboard.rooms'
 			})
+			.state('dashboard.playground', {
+				url: "/rooms/:roomId",
+				templateUrl: 'views/pages/playground.html',
+				controller: 'ctrl.dashboard.playground'
+			})
 	}]);
